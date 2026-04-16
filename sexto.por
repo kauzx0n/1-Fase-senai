@@ -1,5 +1,0 @@
-programa {
-  funcao inicio() {
-    
-  }
-}
