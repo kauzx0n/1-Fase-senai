@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kauan Store | O Seu Manto de Respeito</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- PALETA DE CORES KAUAN STORE --- */
+        :root {
+            --navy-base: #020b18; 
+            --navy-light: #0a192f;
+            --cyan-accent: #00c3ff; 
+            --white: #ffffff;
+            --gray-light: #f4f5f7;
+            --gray-dark: #333333;
+            --green-price: #00d26a; 
+            --red-tag: #e11d48; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--navy-base); color: var(--white); font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, .font-destaque { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
+        /* --- TOP BAR --- */
+        .top-bar { background-color: var(--cyan-accent); color: var(--navy-base); text-align: center; padding: 10px; font-size: 0.85rem; font-weight: 800; display: flex; justify-content: center; gap: 30px; letter-spacing: 1px; font-family: 'Montserrat', sans-serif;}
+        
+        /* --- HEADER --- */
+        header { background: var(--navy-light); padding: 20px 0; border-bottom: 2px solid rgba(0, 195, 255, 0.2); position: sticky; top: 0; z-index: 100; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: 900; color: var(--white); cursor: pointer; display: flex; align-items: center; gap: 10px; letter-spacing: -1px;}
+        .logo-circle { width: 45px; height: 45px; border: 3px solid var(--cyan-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--cyan-accent); }
+        .logo span { color: var(--cyan-accent); }
+        
+        .header-actions { display: flex; align-items: center; gap: 25px; }
+        .cart-btn { background: transparent; border: none; cursor: pointer; position: relative; font-size: 1.5rem; color: var(--white); transition: 0.3s;}
+        .cart-btn:hover { color: var(--cyan-accent); transform: scale(1.1); }
+        .cart-badge { position: absolute; top: -8px; right: -12px; background: var(--cyan-accent); color: var(--navy-base); border-radius: 50%; width: 22px; height: 22px; font-size: 0.8rem; font-weight: 900; display: flex; align-items: center; justify-content: center; border: 2px solid var(--navy-light);}
+
+        /* --- NAVEGAÇÃO DE LIGAS (CATÁLOGO) --- */
+        .navbar { display: flex; justify-content: center; gap: 40px; padding: 20px 0; background: var(--navy-base); flex-wrap: wrap; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);}
+        .navbar-title { width: 100%; font-size: 1.2rem; color: var(--white); margin-bottom: 15px; font-weight: 800; letter-spacing: 2px; }
+        .navbar-title span { color: var(--cyan-accent); }
+        .navbar button { background: none; border: none; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: #8892b0; transition: 0.3s; padding: 5px 0; font-family: 'Montserrat', sans-serif;}
+        .navbar button:hover, .navbar button.ativo { color: var(--cyan-accent); text-shadow: 0 0 10px rgba(0, 195, 255, 0.4); }
+
+        /* --- BANNERS --- */
+        .banner-area { width: 100%; max-width: 1280px; margin: 30px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(0, 195, 255, 0.2); cursor: pointer;}
+        .banner-area img { width: 100%; height: auto; display: block; object-fit: cover; }
+
+        /* --- VITRINE DE PRODUTOS --- */
+        .titulo-secao { text-align: left; margin: 50px 0 30px 0; font-size: 2.2rem; font-weight: 900; color: var(--white); border-left: 5px solid var(--cyan-accent); padding-left: 15px;}
+        #vitrine { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding-bottom: 60px; }
+        
+        /* O Cartão de Produto Limpo */
+        .produto-card { background: var(--white); color: var(--gray-dark); border-radius: 8px; overflow: hidden; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; border: 1px solid #e5e7eb; cursor: pointer;}
+        .produto-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 195, 255, 0.15); border-color: var(--cyan-accent);}
+        
+        .tag-promo { position: absolute; top: 15px; left: 15px; background: var(--red-tag); color: #fff; padding: 6px 14px; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; z-index: 2; border-radius: 4px; box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4);}
+        
+        .produto-img-container { width: 100%; height: 280px; overflow: hidden; position: relative; background: #f0f0f0;}
+        .produto-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;}
+        .produto-card:hover .produto-img { transform: scale(1.05); }
+        
+        .img-detalhe-inlay { position: absolute; bottom: 15px; right: 15px; width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--white); box-shadow: 0 5px 15px rgba(0,0,0,0.2); object-fit: cover; z-index: 3;}
+
+        .produto-info { padding: 25px 20px; display: flex; flex-direction: column; flex-grow: 1; text-align: center; justify-content: space-between;}
+        .produto-info h4 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; color: var(--navy-base); line-height: 1.3;}
+        
+        .preco-area { margin-bottom: 20px; }
+        .preco-antigo { text-decoration: line-through; color: #9ca3af; font-size: 0.9rem; margin-bottom: 2px;}
+        .preco-pix { color: var(--green-price); font-size: 1.5rem; font-weight: 900; margin: 0; font-family: 'Montserrat', sans-serif;}
+        .parcelamento { font-size: 0.85rem; color: #6b7280; margin-top: 2px;}
+
+        .btn-comprar { background: var(--navy-base); color: var(--white); border: none; padding: 14px; width: 100%; font-size: 1rem; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; border-radius: 4px; letter-spacing: 1px;}
+        .produto-card:hover .btn-comprar { background: var(--cyan-accent); color: var(--navy-base);}
+
+        /* --- MODAL DE PRODUTO (Estilo Pop-up) --- */
+        .modal-overlay { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(2, 11, 24, 0.85); align-items: center; justify-content: center; backdrop-filter: blur(5px);}
+        .modal-produto-content { background: var(--white); color: var(--navy-base); width: 95%; max-width: 800px; border-radius: 12px; display: flex; overflow: hidden; position: relative; animation: zoomIn 0.3s ease-out; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);}
+        
+        .modal-img-lado { width: 50%; background: #f0f0f0; position: relative;}
+        .modal-img-lado img { width: 100%; height: 100%; object-fit: cover;}
+        
+        .modal-info-lado { width: 50%; padding: 40px 30px; display: flex; flex-direction: column; }
+        .modal-fechar { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #9ca3af; transition: 0.2s; font-weight: 400;}
+        .modal-fechar:hover { color: var(--red-tag); }
+        
+        .modal-titulo { font-size: 1.8rem; font-weight: 900; margin-bottom: 20px; line-height: 1.2; color: var(--navy-base);}
+        
+        .modal-box-preco { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 15px; border-radius: 8px; margin-bottom: 25px;}
+        .modal-box-preco .preco-antigo { color: #9ca3af; margin-bottom: 5px; font-size: 1rem;}
+        .modal-box-preco .preco-pix { font-size: 1.8rem; color: var(--green-price);}
+        .modal-box-preco .parcelamento { color: #6b7280; font-size: 0.95rem;}
+
+        .modal-opcoes-label { font-size: 0.85rem; font-weight: 800; color: #4b5563; margin-bottom: 10px; text-transform: uppercase; display: flex; justify-content: space-between;}
+        
+        .tamanhos-grid { display: flex; gap: 10px; margin-bottom: 25px;}
+        .tamanho-btn { flex: 1; padding: 12px 0; background: #f3f4f6; border: 2px solid #e5e7eb; border-radius: 4px; font-weight: 800; font-size: 1rem; cursor: pointer; transition: 0.2s; color: var(--navy-base);}
+        .tamanho-btn:hover { border-color: var(--cyan-accent); }
+        .tamanho-btn.selected { background: var(--navy-base); color: var(--white); border-color: var(--navy-base); }
+
+        .modal-select { width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 4px; font-size: 1rem; margin-bottom: 30px; outline: none; font-family: 'Inter', sans-serif; font-weight: 600; color: var(--navy-base); cursor: pointer;}
+        .modal-select:focus { border-color: var(--cyan-accent); }
+
+        .btn-add-carrinho { background: var(--green-price); color: var(--white); border: none; padding: 18px; width: 100%; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; border-radius: 6px; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: auto;}
+        .btn-add-carrinho:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 210, 106, 0.3);}
+
+        /* --- MODAL TABELA DE MEDIDAS --- */
+        .modal-tabela { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0, 0.8); align-items: center; justify-content: center; }
+        .modal-tabela img { max-width: 90%; max-height: 90%; border-radius: 8px; border: 2px solid var(--cyan-accent);}
+
+        /* --- TELAS DE CARRINHO E CHECKOUT --- */
+        #tela-carrinho, #tela-checkout { display: none; padding: 40px 0; }
+        .btn-voltar { background: transparent; border: none; font-weight: 700; cursor: pointer; margin-bottom: 30px; color: var(--cyan-accent); font-size: 1rem; display: flex; align-items: center; gap: 8px; text-transform: uppercase;}
+        
+        .carrinho-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        .item-carrinho { display: flex; gap: 20px; background: var(--navy-light); padding: 20px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1);}
+        .item-carrinho img { width: 100px; height: 100px; object-fit: cover; border-radius: 4px;}
+        .item-detalhes h4 { font-size: 1.1rem; color: var(--white); }
+        .item-atributos { font-size: 0.85rem; color: var(--cyan-accent); margin: 8px 0; display: block; font-weight: 600;}
+        .item-preco-box { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 10px;}
+        .item-preco { font-weight: 900; font-size: 1.3rem; color: var(--green-price);}
+        .btn-remover { background: transparent; border: 1px solid var(--red-tag); color: var(--red-tag); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: 700; transition: 0.2s;}
+        .btn-remover:hover { background: var(--red-tag); color: #fff;}
+
+        .box-escura { background: var(--navy-light); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;}
+        .box-escura h3 { margin-bottom: 25px; color: var(--cyan-accent); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;}
+        .resumo-linha { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1.05rem; color: #cbd5e1;}
+        .total-linha { font-weight: 900; font-size: 1.6rem; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 20px; margin-top: 15px; color: var(--white);}
+        
+        .input-group { margin-bottom: 15px; display: flex; flex-direction: column; }
+        .input-row { display: flex; gap: 15px; }
+        .input-row .input-group { flex: 1; }
+        .input-group label { font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: #94a3b8; text-transform: uppercase;}
+        .input-group input { padding: 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; font-size: 1rem; outline: none; background: rgba(0,0,0,0.2); color: white; transition: 0.3s;}
+        .input-group input:focus { border-color: var(--cyan-accent); background: rgba(0, 195, 255, 0.05);}
+
+        .btn-acao-principal { background: var(--green-price); color: var(--navy-base); padding: 18px; border: none; font-size: 1.2rem; font-weight: 900; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: 0.3s; width: 100%; margin-top: 20px; letter-spacing: 1px;}
+        .btn-acao-principal:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 210, 106, 0.3);}
+
+        /* --- RODAPÉ --- */
+        footer { background: #01060e; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px;}
+        
+        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        @media (max-width: 768px) {
+            .carrinho-grid { grid-template-columns: 1fr; }
+            .input-row { flex-direction: column; gap: 0; }
+            .navbar { gap: 15px; padding: 15px; }
+            .modal-produto-content { flex-direction: column; overflow-y: auto; max-height: 90vh;}
+            .modal-img-lado { width: 100%; height: 300px; }
+            .modal-info-lado { width: 100%; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>COMPRE 3, PAGUE 2 🔥</span>
+        <span>FRETE GRÁTIS</span>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo" onclick="mostrarTela('loja')">
+                <div class="logo-circle">KS</div>
+                KAUAN<span>STORE</span>
+            </div>
+            <div class="header-actions">
+                <button class="cart-btn" onclick="mostrarTela('carrinho')">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge" id="contador-cart">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar" id="menu-categorias">
+        <div class="navbar-title">ESCOLHA A LIGA <span>OU O TIME ABAIXO!</span></div>
+        <button onclick="filtrarCategoria('todas')" class="ativo"><i class="fas fa-globe"></i> Início</button>
+        <button onclick="filtrarCategoria('selecoes')"><i class="fas fa-flag"></i> Seleções</button>
+        <button onclick="filtrarCategoria('brasileirao')"><i class="fas fa-trophy"></i> Brasileirão</button>
+        <button onclick="filtrarCategoria('europeus')"><i class="fas fa-star"></i> Ligas Europeias</button>
+    </nav>
+
+    <div id="tela-loja">
+        <div class="container">
+            <div class="banner-area">
+               <img src="https://i.postimg.cc/QdMcMBsq/Gemini-Generated-Image-y49ynay49ynay49y.webp" alt="Sorteio Camisas Brasil e Portugal" width="100%" height="auto">
+            </div>
+
+            <h3 class="titulo-secao" id="titulo-vitrine">CATÁLOGO KS</h3>
+            <div id="vitrine"></div>
+
+            <div class="banner-area" style="margin-top: 60px;">
+                <img src="https://i.postimg.cc/SQvnGZp2/022b638e-4166-4f6e-8d2b-c4a01e2a2f7a-(1).png" alt="Sorteio Camisas de Times" width="100%" height="auto">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-produto" class="modal-overlay">
+        <div class="modal-produto-content">
+            <span class="modal-fechar" onclick="fecharModalProduto()">&times;</span>
+            
+            <div class="modal-img-lado">
+                <img id="modal-img" src="" alt="Produto">
+            </div>
+            
+            <div class="modal-info-lado">
+                <h2 class="modal-titulo" id="modal-titulo">Nome da Camisa</h2>
+                
+                <div class="modal-box-preco">
+                    <p class="preco-antigo" id="modal-preco-antigo">R$ 00,00</p>
+                    <p class="preco-pix" id="modal-preco-pix">R$ 00,00 <span style="font-size: 1rem; font-weight:700;">no pix</span></p>
+                    <p class="parcelamento" id="modal-parcela">ou 12x de R$ 00,00</p>
+                </div>
+
+                <div class="modal-opcoes-label">
+                    <span>SELECIONE O TAMANHO:</span>
+                    <span style="color:var(--cyan-accent); cursor:pointer; text-decoration:underline;" onclick="abrirMedidas()">Ver Medidas</span>
+                </div>
+                <div class="tamanhos-grid">
+                    <button class="tamanho-btn" onclick="selecionarTamanho(this, 'P')">P</button>
+                    <button class="tamanho-btn" onclick="selecionarTamanho(this, 'M')">M</button>
+                    <button class="tamanho-btn" onclick="selecionarTamanho(this, 'G')">G</button>
+                    <button class="tamanho-btn" onclick="selecionarTamanho(this, 'GG')">GG</button>
+                </div>
+
+                <div class="modal-opcoes-label">Adicionar Personalização?</div>
+                <select class="modal-select" id="modal-adicional">
+                    <option value="Lisa">Não (Camisa Lisa)</option>
+                    <option value="Personalizada">Sim, Nome e Número (+ R$ 20,00)</option>
+                </select>
+
+                <button class="btn-add-carrinho" onclick="adicionarAoCarrinhoPeloModal()">
+                    <i class="fas fa-cart-plus"></i> ADICIONAR AO CARRINHO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-medidas" class="modal-tabela" onclick="fecharMedidas()">
+        <img src="https://placehold.co/800x1000/0a192f/ffffff?text=SUA_IMAGEM_AQUI_TABELA_MEDIDAS" alt="Tabela de Medidas" onclick="event.stopPropagation()">
+    </div>
+
+    <div id="tela-carrinho" class="container">
+        <button class="btn-voltar" onclick="mostrarTela('loja')"><i class="fas fa-arrow-left"></i> Continuar Comprando</button>
+        <h3 class="titulo-secao">SEU CARRINHO</h3>
+        <div class="carrinho-grid">
+            <div id="lista-carrinho"></div>
+            <div class="box-escura" id="area-resumo-carrinho">
+                <h3>Resumo do Pedido</h3>
+                <div id="detalhes-valores-carrinho"></div>
+                <button class="btn-acao-principal" onclick="mostrarTela('checkout')">
+                    FINALIZAR COMPRA <i class="fas fa-check-circle"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="tela-checkout" class="container">
+         <button class="btn-voltar" onclick="mostrarTela('carrinho')"><i class="fas fa-arrow-left"></i> Voltar ao Carrinho</button>
+        <h3 class="titulo-secao">CHECKOUT SEGURO</h3>
+        
+        <div class="carrinho-grid">
+            <div>
+                <form id="form-checkout" onsubmit="processarPedido(event)">
+                    <div class="box-escura">
+                        <h3><i class="far fa-user"></i> Dados Pessoais</h3>
+                        <div class="input-group"><label>Nome Completo</label><input type="text" id="nomeCompleto" required></div>
+                        <div class="input-row">
+                            <div class="input-group"><label>WhatsApp</label><input type="text" id="whatsApp" required></div>
+                            <div class="input-group"><label>E-mail</label><input type="email" required></div>
+                        </div>
+                    </div>
+                    <div class="box-escura">
+                        <h3><i class="fas fa-map-marker-alt"></i> Endereço</h3>
+                        <div class="input-row">
+                            <div class="input-group" style="flex: 0.5;"><label>CEP</label><input type="text" id="cep" required onblur="buscarCEP()" maxlength="9"></div>
+                            <div class="input-group"><label>Rua / Avenida</label><input type="text" id="rua" required></div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group" style="flex: 0.3;"><label>Número</label><input type="text" id="numero" required></div>
+                            <div class="input-group"><label>Bairro</label><input type="text" id="bairro" required></div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group"><label>Cidade</label><input type="text" id="cidade" required readonly></div>
+                            <div class="input-group" style="flex: 0.3;"><label>Estado</label><input type="text" id="uf" required readonly></div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-acao-principal"><i class="fab fa-whatsapp"></i> FINALIZAR VIA WHATSAPP</button>
+                </form>
+            </div>
+            <div class="box-escura">
+                <h3>Resumo Final</h3>
+                <div id="detalhes-valores-checkout"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+body{
+    background-color: rgb(110, 110, 192);
+    color: aliceblue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+}
+
+button{
+    background-color: rgb(242, 255, 194);
+    color: rgb(137, 31, 207);
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin: 10px;
+}
