@@ -1,6 +1,6 @@
 // Array com 4 camisas de times do Brasileirão 2026 adicionado!
 const produtosBD = [
-    { id: 1, nome: "Camisa do Brasil Azul - Away", precoDe: 209.90, precoPor: 161.83, categoria: "selecoes", img: "https://placehold.co/600x600/002776/ffffff?text=FOTO+DA+CAMISA+AZUL", imgDetalhe: "https://placehold.co/150x150/002776/ffffff?text=ESCUDO" },
+    { id: 1, nome: "Camisa do Brasil Azul - Manto 2026", precoDe: 209.90, precoPor: 161.83, categoria: "selecoes", img: "https://placehold.co/600x600/002776/ffffff?text=FOTO+DA+CAMISA+AZUL", imgDetalhe: "https://placehold.co/150x150/002776/ffffff?text=ESCUDO" },
     { id: 2, nome: "Camisa Brasil - Copa 1998 Home", precoDe: 209.90, precoPor: 193.11, categoria: "selecoes", img: "https://placehold.co/600x600/FFDF00/009b3a?text=FOTO+DA+CAMISA+98", imgDetalhe: "https://placehold.co/150x150/FFDF00/009b3a?text=ESCUDO" },
     { id: 3, nome: "Camisa Brasil - Copa 2002 Penta", precoDe: 209.90, precoPor: 193.11, categoria: "selecoes", img: "https://placehold.co/600x600/FFDF00/009b3a?text=FOTO+DA+CAMISA+02", imgDetalhe: "https://placehold.co/150x150/FFDF00/009b3a?text=ESCUDO" },
     { id: 4, nome: "Camisa Real Madrid - Home 23/24", precoDe: 229.90, precoPor: 179.90, categoria: "europeus", img: "https://placehold.co/600x600/FFFFFF/000000?text=FOTO+REAL+MADRID", imgDetalhe: "https://placehold.co/150x150/FFFFFF/000000?text=ESCUDO" },
