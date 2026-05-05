@@ -1,10 +1,10 @@
 // Array com 4 camisas de times do Brasileirão 2026 adicionado!
 const produtosBD = [
-    { id: 1, nome: "Camisa do Brasil Azul - Manto 2026", precoDe: 209.90, precoPor: 161.83, categoria: "selecoes", img: "https://placehold.co/600x600/002776/ffffff?text=FOTO+DA+CAMISA+AZUL", imgDetalhe: "https://placehold.co/150x150/002776/ffffff?text=ESCUDO" },
-    { id: 2, nome: "Camisa Brasil - Copa 1998 Home", precoDe: 209.90, precoPor: 193.11, categoria: "selecoes", img: "https://placehold.co/600x600/FFDF00/009b3a?text=FOTO+DA+CAMISA+98", imgDetalhe: "https://placehold.co/150x150/FFDF00/009b3a?text=ESCUDO" },
-    { id: 3, nome: "Camisa Brasil - Copa 2002 Penta", precoDe: 209.90, precoPor: 193.11, categoria: "selecoes", img: "https://placehold.co/600x600/FFDF00/009b3a?text=FOTO+DA+CAMISA+02", imgDetalhe: "https://placehold.co/150x150/FFDF00/009b3a?text=ESCUDO" },
-    { id: 4, nome: "Camisa Real Madrid - Home 23/24", precoDe: 229.90, precoPor: 179.90, categoria: "europeus", img: "https://placehold.co/600x600/FFFFFF/000000?text=FOTO+REAL+MADRID", imgDetalhe: "https://placehold.co/150x150/FFFFFF/000000?text=ESCUDO" },
-    { id: 5, nome: "Camisa Flamengo - Home 2024", precoDe: 229.90, precoPor: 189.90, categoria: "brasileirao", img: "https://placehold.co/600x600/cc0000/000000?text=FOTO+FLAMENGO", imgDetalhe: "https://placehold.co/150x150/cc0000/000000?text=ESCUDO" },
+    { id: 1, nome: "Camisa do Brasil Azul - Manto 2026", precoDe: 209.90, precoPor: 161.83, categoria: "selecoes", img: "https://i.postimg.cc/3J9cpKd9/camisa-do-brasil-azul-away1-f931ff93c1ec340a0c17652211085465-1024-1024.webp", imgDetalhe: "https://i.postimg.cc/vHbx6yVH/Captura-de-tela-2026-05-04-205031.png"},
+    { id: 2, nome: "Camisa do Brasil - Manto 2026", precoDe: 209.90, precoPor: 193.11, categoria: "selecoes", img: "https://i.postimg.cc/fy7mXTCb/img-1760-14ac343b97c1f61d2317742143290569-1024-1024.webp", imgDetalhe: "https://i.postimg.cc/9X60Ghq3/5822e92a.jpg"},
+    { id: 3, nome: "Camisa do Brasil - Home 26", precoDe: 209.90, precoPor: 193.11, categoria: "selecoes", img: "https://i.postimg.cc/FzDrL2MJ/4b015d69.jpg", imgDetalhe: "https://i.postimg.cc/sx9B06tp/3c51fc56.jpg"},
+    { id: 4, nome: "Camisa do Brasil - Home 23/24", precoDe: 229.90, precoPor: 179.90, categoria: "selecoes", img: "https://i.postimg.cc/zBdWJPdZ/977f0869.jpg", imgDetalhe: "https://i.postimg.cc/1tW69YWx/b4623227.jpg"},
+    { id: 5, nome: "Camisa Real Madrid - Home 23/24", precoDe: 229.90, precoPor: 189.90, categoria: "europeus", img: "https://i.postimg.cc/GtnSdt9k/camisa-real-madrid-home-23-24-torcedor-adidas-imagem-1-jpeg1-7175dabd9eea79851e16859218075668-1024-1.webp", imgDetalhe:  "https://i.postimg.cc/59LbWFj6/5767aad6.jpg"},
     { id: 6, nome: "Camisa Corinthians - Home 2024", precoDe: 229.90, precoPor: 189.90, categoria: "brasileirao", img: "https://placehold.co/600x600/FFFFFF/000000?text=FOTO+CORINTHIANS", imgDetalhe: "https://placehold.co/150x150/FFFFFF/000000?text=ESCUDO" },
     
     // --- INÍCIO ADIÇÃO BRASILEIRÃO 2026 ---

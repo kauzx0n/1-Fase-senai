@@ -1,16 +1,51 @@
+let resposta = document.getElementById('resultado')
+
+function adivinharNumero(){
+    // infos
+    let numero = Math.ceil(matchMedia.random()*3)
+    let chute == Number={prompt("Chuta ai:")}
+    // entradas
+    if(chute == numero){
+      resposta.innerHTML = "Acertou!"
+    }else{
+      
+    }
+    // proc
+
+    // saidas
+    
+  }
+
+function verificarIdade(){
+    // infos
+    let idade
+    // entradas
+    idade = Number(prompt("Digite sua idade:"))
+    // proc
+
+    // saidas
+    if(idade >= 18){
+        resposta.innerHTML = "Voce é maior de idade"
+    }else{
+      resposta.innerHTML = "Voce é menor de idade "
+    }
+  }
+
+  //=====================================================================================
+
 function calcularTransporte(){
     // infos
-let peso, distancia, volume, frete
+    let peso, distancia, volume, frete
 
-// leituras
-peso = Number(prompt("Qual o peso da carga?"))
-distancia = Number(prompt("Qual a distância da entrega?"))
-volume = Number(prompt("Qual o volume da carga?"))
+    // leituras
+   peso = Number(prompt("Qual o peso da carga?"))
+   distancia = Number(prompt("Qual a distância da entrega?"))
+   volume = Number(prompt("Qual o volume da carga?"))
 
-// proc
-if (peso > 0 && distancia > 0 && volume > 0) {
+    // proc
+   if (peso > 0 && distancia > 0 && volume > 0) {
     // Cálculo seguindo a fórmula da Telles Transportes
-    frete = 15 + (2 * peso) + (0.05 * distancia) + (10 * volume)
+   frete = 15 + (2 * peso) + (0.05 * distancia) + (10 * volume)
 
     // saidas
     alert("O valor total do frete da Telles é R$ " + frete)
@@ -21,24 +56,24 @@ if (peso > 0 && distancia > 0 && volume > 0) {
 
 // =======================================================================================
 
-// CAPITAO GANSO
-function verificarProvisoes(){
-// infos
-let marujos,comida
-let comidaPorMarujo
-// entradas
-marujos = Number(prompt("Quantidade de marujos:"))
-comida = Number(prompt("quilos de comida:"))
-// processamentos
-comidaPorMarujo = comida / marujos
-// saidas
-  if(marujos >= 10 && comidaPorMarujo >= 1.5){ // ||
-     document.getElementById('resultado').innerHTML = "provisoes suficientes. Rumo ao horizonte"
-  }else{
-    document.getElementById('resultado').innerHTML = "Algo esta errado. Posseidom nao quer ninguem no mar hoje."
+   function verificarProvisoes(){
+    // infos
+   let marujos,comida
+   let comidaPorMarujo
+    // entradas
+   marujos = Number(prompt("Quantidade de marujos:"))
+   comida = Number(prompt("quilos de comida:"))
+    // processamentos
+   comidaPorMarujo = comida / marujos
+    // saidas
+   if(marujos >= 10 && comidaPorMarujo >= 1.5){ 
+   document.getElementById('resultado').innerHTML = "provisoes suficientes. Rumo ao horizonte"
+   }else{
+   document.getElementById('resultado').innerHTML = "Algo esta errado. Posseidom nao quer ninguem no mar hoje."
   }
 }
 
+//=========================================================================================
 
 function calcularPrecoBrique(){
     // INFOS
