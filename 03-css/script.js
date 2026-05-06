@@ -1,20 +1,67 @@
 let resposta = document.getElementById('resultado')
 
+Function 
+
+//=====================================================================================
+
+function calcularParImpar(){
+  let n = Number(prompt("Digite numero, meu consagrado:"))
+  if(n%2 == 0){
+    alert("Par")
+  }else{
+    alert("Impar")
+  }
+}
+
+//=====================================================================================
+
+function mostrarDiaDaSemana(){
+  // infos
+  let numero, dia
+  // leitura
+  numero = Number(prompt("Digite o numero:"))
+  // processamento
+  if(numero == 1){
+    dia = "Domingo"
+  }else if(numero == 2){
+    dia = "Segunda"
+  }else if(numero == 3){
+    dia = "Terça"
+  }else if(numero == 4){
+    dia = "Quarta"
+  }else if(numero == 5){
+    dia = "Quinta"
+  }else if(numero == 6){
+    dia = "Sexta"
+  }else if(numero == 7){
+    dia = "Sabado"
+  }else {
+    dia = "Numero incorreto"
+  }
+
+  // saidas
+  document.getElementById('resultado').innerHTML = 'dia escolhido: ' + dia
+}
+
+//=====================================================================================
+
 function adivinharNumero(){
     // infos
     let numero = Math.ceil(matchMedia.random()*3)
-    let chute == Number={prompt("Chuta ai:")}
+    let chute = Number(prompt("Chuta ai:"))
     // entradas
     if(chute == numero){
       resposta.innerHTML = "Acertou!"
     }else{
-      
+      resposta.innerHTML = "Errou!"
     }
     // proc
 
     // saidas
     
   }
+
+//=====================================================================================
 
 function verificarIdade(){
     // infos
@@ -31,7 +78,7 @@ function verificarIdade(){
     }
   }
 
-  //=====================================================================================
+//=====================================================================================
 
 function calcularTransporte(){
     // infos
@@ -54,9 +101,9 @@ function calcularTransporte(){
 }
 }
 
-// =======================================================================================
+// ====================================================================================
 
-   function verificarProvisoes(){
+function verificarProvisoes(){
     // infos
    let marujos,comida
    let comidaPorMarujo
@@ -73,7 +120,7 @@ function calcularTransporte(){
   }
 }
 
-//=========================================================================================
+//=====================================================================================
 
 function calcularPrecoBrique(){
     // INFOS
