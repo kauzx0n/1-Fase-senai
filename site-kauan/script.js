@@ -8,8 +8,8 @@ const produtosBD = [
     { id: 6, nome: "Camisa Corinthians - Home 2024", precoDe: 229.90, precoPor: 189.90, categoria: "brasileirao", img: "https://i.postimg.cc/ry5hRBm2/6ff770bb.webp", imgDetalhe: "https://i.postimg.cc/ZKhMfTgv/Captura-de-tela-2026-05-05-194538.webp"},
     
     // --- INÍCIO ADIÇÃO BRASILEIRÃO 2026 ---
-    { id: 101, nome: "Camisa Palmeiras - Titular 2026", precoDe: 249.90, precoPor: 199.90, categoria: "brasileirao", img: "https://placehold.co/600x600/006400/FFFFFF?text=FOTO+PALMEIRAS+HOME", imgDetalhe: "https://placehold.co/150x150/006400/FFFFFF?text=ESCUDO" },
-    { id: 102, nome: "Camisa Palmeiras - Reserva 2026", precoDe: 249.90, precoPor: 199.90, categoria: "brasileirao", img: "https://placehold.co/600x600/FFFFFF/006400?text=FOTO+PALMEIRAS+AWAY", imgDetalhe: "https://placehold.co/150x150/FFFFFF/006400?text=ESCUDO" },
+    { id: 101, nome: "Camisa Internacional - Home 25/26", precoDe: 249.90, precoPor: 199.90, categoria: "brasileirao", img: "https://i.postimg.cc/D0nnvG25/25433599.webp", imgDetalhe: "https://i.postimg.cc/MTyzJ58y/Captura-de-tela-2026-05-05-220730.webp" },
+    { id: 102, nome: "Camisa Palmeiras - Home 25/26", precoDe: 249.90, precoPor: 199.90, categoria: "brasileirao", img: "https://i.postimg.cc/k4ddsStD/53986ee3.webp", imgDetalhe: "https://i.postimg.cc/xCSS5mbN/e5949f12.webp" },
     { id: 103, nome: "Camisa Palmeiras - Terceira 2026", precoDe: 249.90, precoPor: 199.90, categoria: "brasileirao", img: "https://placehold.co/600x600/7FFF00/006400?text=FOTO+PALMEIRAS+THIRD", imgDetalhe: "https://placehold.co/150x150/7FFF00/006400?text=ESCUDO" },
     { id: 104, nome: "Camisa Palmeiras - Goleiro 2026", precoDe: 249.90, precoPor: 199.90, categoria: "brasileirao", img: "https://placehold.co/600x600/0000CD/FFFFFF?text=FOTO+PALMEIRAS+GK", imgDetalhe: "https://placehold.co/150x150/0000CD/FFFFFF?text=ESCUDO" },
 
