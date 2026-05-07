@@ -1,6 +1,36 @@
 let resposta = document.getElementById('resultado')
 
-Function 
+  function verificarMeta(){
+    // infos
+     let totalBruto, premiacoes, presentes, comissoes
+    // entradas
+        totalBruto = Number(prompt("Total bruto:"))
+        premiacoes = Number(prompt("Premiaçoes:"))
+        presentes = Number(prompt("Presentinhos:"))
+        comissoes = Number(prompt("Comissoes:"))
+        meta = Number(prompt("Meta de hoje:"))
+    // processamentos 
+        lucro = totalBruto - premiacoes - presentes - comissoes
+
+         let mensagem = ''
+        if(lucro >= meta){
+               // bateu a meta -
+            mensagem = '👵Batemos a meta, Lucro de R$' + lucro.tofixed(2).replace('.',',')
+       }else{
+               // nao bateu a meta
+        if(lucro > 0){
+               // sem metas e prejuizo
+            mensagem = 'Nao batemos a meta, mas tivemos lucro de R$' + lucro.toFixed(2).replace('.',',')
+       }else{
+              // sem meta e prejuizo
+          let prejuizo = lucro * -1
+            mensagem = '💀☠️⚔️🗡️🔫🦵Não batemos a meta e ainda tivemos prejuizo de R$' + prejuizo.tofixed(2).replace('.',',')
+          }
+        }
+
+    // saidas
+        resposta.getElementById = "<br>Lucro de hoje: R$" + lucro.tofixed(2).replace('.',',') + '<br>' + mensagem 
+}
 
 //=====================================================================================
 
@@ -59,7 +89,7 @@ function adivinharNumero(){
 
     // saidas
     
-  }
+}
 
 //=====================================================================================
 
@@ -76,7 +106,7 @@ function verificarIdade(){
     }else{
       resposta.innerHTML = "Voce é menor de idade "
     }
-  }
+}
 
 //=====================================================================================
 
