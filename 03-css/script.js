@@ -1,6 +1,25 @@
 let resposta = document.getElementById('resultado')
 
-  function verificarMeta(){
+function calcularTotalLoja(){
+    // INFOS
+    let precoParCalcado, paresTrocados
+    let valorTotal
+    // LEITURAS
+    paresTrocados =Number(prompt("Quantidade de pares trocados:"))
+    precoParCalcado = Number(prompt("Preço de cada par R$"))
+    // PROCESSAMENTO
+    
+    // SAIDAS
+    alert("Total de pares trocados" + paresTrocados)
+    alert("A loja ira receber " + precoParCalcado)
+    let prejuizo = lucro * -1
+            mensagem = "total que a loja ira receber é de R$" + precoParCalcado.toFixed(2).replace('.',',')
+
+    
+    document.getElementById("resultado").innerHTML = valorTotal 
+}
+
+function verificarMeta(){
     // infos
      let totalBruto, premiacoes, presentes, comissoes
     // entradas
@@ -15,7 +34,7 @@ let resposta = document.getElementById('resultado')
          let mensagem = ''
         if(lucro >= meta){
                // bateu a meta -
-            mensagem = '👵Batemos a meta, Lucro de R$' + lucro.tofixed(2).replace('.',',')
+            mensagem = '👵Batemos a meta, Lucro de R$' + lucro.toFixed(2).replace('.',',')
        }else{
                // nao bateu a meta
         if(lucro > 0){
@@ -24,12 +43,12 @@ let resposta = document.getElementById('resultado')
        }else{
               // sem meta e prejuizo
           let prejuizo = lucro * -1
-            mensagem = '💀☠️⚔️🗡️🔫🦵Não batemos a meta e ainda tivemos prejuizo de R$' + prejuizo.tofixed(2).replace('.',',')
+            mensagem = '💀☠️⚔️🗡️🔫🦵Não batemos a meta e ainda tivemos prejuizo de R$' + prejuizo.toFixed(2).replace('.',',')
           }
         }
 
     // saidas
-        resposta.getElementById = "<br>Lucro de hoje: R$" + lucro.tofixed(2).replace('.',',') + '<br>' + mensagem 
+        resposta.innerHTML = "<br>Lucro de hoje: R$" + lucro.toFixed(2).replace('.',',') + '<br>' + mensagem 
 }
 
 //=====================================================================================
