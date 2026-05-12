@@ -1,0 +1,16 @@
+body{
+    background-color:aliceblue
+}
+output{
+    color:red;
+}
+button{
+    background:black;
+    color:white;
+    padding: 20px; 
+    /* padding = quao grande é o botao */
+    border-radius: 100px;
+    /* border radius vai deixar a borda redonda */
+    border: none;
+    margin: 5px;
+}

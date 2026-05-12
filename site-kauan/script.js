@@ -18,7 +18,7 @@ const produtosBD = [
     { id: 107, nome: "Camisa Gremio - Home 24/25", precoDe: 249.90, precoPor: 149.90, categoria: "brasileirao", img: "https://i.postimg.cc/3wxCfc7H/b844ab46.webp", imgDetalhe: "https://i.postimg.cc/NfbGtrDw/Captura-de-tela-2026-05-06-215242-(1).webp"},
     { id: 108, nome: "Camisa Cruzeiro - Home 2026", precoDe: 249.90, precoPor: 149.90, categoria: "brasileirao", img: "https://i.postimg.cc/R0tVmMv1/ff8aeb84.webp", imgDetalhe: "https://i.postimg.cc/59RpRPcp/ea56c529.webp"},
 
-    { id: 109, nome: "Camisa Grêmio - Titular 2026", precoDe: 249.90, precoPor: 149.90, categoria: "brasileirao", img: "https://placehold.co/600x600/87CEEB/000000?text=FOTO+GREMIO+HOME", imgDetalhe: "https://placehold.co/150x150/87CEEB/000000?text=ESCUDO" },
+    { id: 109, nome: "Camisa Atlético Mineiro - Home 2026", precoDe: 249.90, precoPor: 149.90, categoria: "brasileirao", img: "https://i.postimg.cc/J7Yz5Nrh/fab7ed2a.webp", imgDetalhe: "https://i.postimg.cc/Kcp8DPGs/aea1d32d.webp" },
     { id: 110, nome: "Camisa Grêmio - Reserva 2026", precoDe: 249.90, precoPor: 149.90, categoria: "brasileirao", img: "https://placehold.co/600x600/FFFFFF/87CEEB?text=FOTO+GREMIO+AWAY", imgDetalhe: "https://placehold.co/150x150/FFFFFF/87CEEB?text=ESCUDO" },
     { id: 111, nome: "Camisa Grêmio - Terceira 2026", precoDe: 249.90, precoPor: 149.90, categoria: "brasileirao", img: "https://placehold.co/600x600/000000/87CEEB?text=FOTO+GREMIO+THIRD", imgDetalhe: "https://placehold.co/150x150/000000/87CEEB?text=ESCUDO" },
     { id: 112, nome: "Camisa Grêmio - Goleiro 2026", precoDe: 249.90, precoPor: 149.90, categoria: "brasileirao", img: "https://placehold.co/600x600/FFFF00/000000?text=FOTO+GREMIO+GK", imgDetalhe: "https://placehold.co/150x150/FFFF00/000000?text=ESCUDO" },
