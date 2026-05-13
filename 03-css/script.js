@@ -1,5 +1,16 @@
 let resposta = document.getElementById('resultado')
 
+function capitaoGansoMarujo(){
+  // INFOS
+
+  // ENTRADAS
+
+  // PROCESSAMENTO
+
+  // SAIDA
+
+}
+
 function calcularUber(){
   // infos
     let distancia , tempoSegundos , tempoMinutos , tempoDias , tempoHoras

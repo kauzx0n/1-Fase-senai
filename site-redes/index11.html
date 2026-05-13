@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaka - Official Bio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Resets Básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            perspective: 1200px;
+        }
+
+        /* Fundo com imagem e desfoque (Blur MUITO reduzido) */
+        #background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            /* SUBSTITUA PELO LINK DA SUA IMAGEM DE GTA */
+            background: url('https://i.postimg.cc/8cCvKZR5/9fabc88e-978c-4155-b754-06c334bd315f.webp') center/cover no-repeat;
+            filter: blur(5px) brightness(0.2); /* Desfoque inicial reduzido drasticamente */
+            z-index: -1;
+            transition: filter 1.5s ease, transform 1.5s ease;
+        }
+
+        /* Tela de Entrada (Clique) */
+        #click-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            cursor: pointer;
+            transition: opacity 0.8s ease;
+        }
+
+        .click-text {
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            color: rgba(255,255,255,0.5);
+            animation: pulse 2s infinite;
+        }
+
+        /* Selo "Criado por Kaka" no canto direito (Modificado para sem coração e com efeito de aparecer) */
+        .creator-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #cbd5e1;
+            color: #1e293b;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            /* Coração removido aqui do CSS, o conteúdo é apenas texto */
+            gap: 8px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            
+            /* Efeito de aparecer: começa invisível */
+            opacity: 0;
+            transition: opacity 1.5s ease 0.5s; /* Delay para aparecer após a entrada */
+        }
+
+        /* Classe para fazer o selo aparecer */
+        .creator-badge.active {
+            opacity: 1;
+        }
+
+        /* Card Principal Estilo Glassmorphism */
+        .container {
+            width: 360px;
+            background: rgba(12, 12, 12, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 50px 30px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9);
+            
+            /* Efeito 3D Suave */
+            transition: transform 0.2s ease-out, opacity 1s ease;
+            transform-style: preserve-3d;
+            
+            opacity: 0;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .container.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Avatar e Textos */
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            /* SUBSTITUA PELO LINK DA SUA FOTO DE PERFIL */
+            background: url('https://i.postimg.cc/c1TMRnRH/61722761-38b8-4340-9d48-96bf5dc8367e.webp') center/cover;
+            margin: 0 auto 15px;
+            border: 2px solid rgba(255,255,255,0.08);
+            transform: translateZ(50px);
+        }
+
+        .name { font-size: 1.5rem; font-weight: 700; transform: translateZ(40px); }
+        .bio { font-size: 0.75rem; color: #777; margin-bottom: 35px; transform: translateZ(30px); }
+
+        /* Botões das Redes */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transform: translateZ(20px);
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            color: #ddd;
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 14px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            /* Transição mais suave para hover clean */
+            transition: all 0.3s ease-out;
+            position: relative;
+        }
+
+        .link-btn i {
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            /* Preparar o ícone para transições suave */
+            transition: text-shadow 0.3s ease-out;
+        }
+
+        /* Efeito de Escala no Botão Inteiro (Hover) - LEVE AUMENTO */
+        .link-btn:hover {
+            transform: scale(1.03);
+            /* Manter o fundo clean, apenas um leve escurecimento */
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Iluminar APENAS o Ícone (Hover) - Usando as Cores da Marca */
+        
+        /* TikTok */
+        .link-btn:hover .fa-tiktok {
+            /* Glow suave combinando ciano e magenta */
+            text-shadow: 0 0 8px rgba(0, 242, 234, 0.8), 0 0 15px rgba(255, 0, 80, 0.6);
+        }
+
+        /* Instagram */
+        .link-btn:hover .fa-instagram {
+            /* Glow suave gradiente rosa/roxo/laranja */
+            text-shadow: 0 0 8px rgba(214, 36, 159, 0.8), 0 0 15px rgba(253, 89, 73, 0.6);
+        }
+
+        /* Twitch */
+        .link-btn:hover .fa-twitch {
+            /* Glow suave roxo Twitch */
+            text-shadow: 0 0 8px rgba(145, 70, 255, 0.8), 0 0 15px rgba(145, 70, 255, 0.6);
+        }
+
+        /* Discord */
+        .link-btn:hover .fa-discord {
+            /* Glow suave azul Discord */
+            text-shadow: 0 0 8px rgba(88, 101, 242, 0.8), 0 0 15px rgba(88, 101, 242, 0.6);
+        }
+
+        /* Contador de Views */
+        .views-counter {
+            position: absolute;
+            bottom: 18px;
+            left: 25px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transform: translateZ(10px);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.98); }
+            50% { opacity: 0.8; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="SUA_MUSICA_AQUI.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="background"></div>
+
+    <div id="click-overlay">
+        <div class="click-text">CLIQUE PARA ENTRAR</div>
+    </div>
+
+    <div class="creator-badge" id="creator-badge">
+        Criado por Kaka
+    </div>
+
+    <div class="container" id="tilt-card">
+        <div class="avatar"></div>
+        <h1 class="name">KAKA</h1>
+        <p class="bio">Minhas Redes - Criador de Conteúdo de GTA RP</p>
+
+        <div class="links-container">
+            <a href="https://www.tiktok.com/@kakaatvv" target="_blank" class="link-btn btn-tiktok"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+            <a href="https://www.instagram.com/kauz.rxyz" target="_blank" class="link-btn btn-insta"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://twitch.tv/kakaatv" target="_blank" class="link-btn btn-twitch"><i class="fa-brands fa-twitch"></i> Twitch</a>
+            <a href="https://discord.gg/Ymt62zk5M7" target="_blank" class="link-btn btn-discord"><i class="fa-brands fa-discord"></i> Discord</a>
+        </div>
+
+        <div class="views-counter">
+            <i class="fa-regular fa-eye"></i>
+            <span id="view-number">8271</span>
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('tilt-card');
+        const overlay = document.getElementById('click-overlay');
+        const badge = document.getElementById('creator-badge'); // Novo elemento
+        const music = document.getElementById('bg-music');
+        const viewDisplay = document.getElementById('view-number');
+
+        // 1. Lógica do Contador (LocalStorage simula visitas)
+        let views = localStorage.getItem('kaka_views');
+        if (!views) {
+            views = 8271;
+        } else {
+            views = parseInt(views) + 1;
+        }
+        localStorage.setItem('kaka_views', views);
+        viewDisplay.innerText = views.toLocaleString();
+
+        // 2. Entrar no site
+        overlay.addEventListener('click', () => {
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.style.display = 'none', 800);
+            card.classList.add('active');
+            
+            // Ativa o selo apenas após o clique
+            badge.classList.add('active');
+            
+            // Blur MUITO reduzido de 5px para 2px para ficar super nítido após clicar
+            document.getElementById('background').style.filter = 'blur(2px) brightness(0.3)';
+            
+            music.volume = 0.5;
+            music.play();
+        });
+
+        // 3. Efeito Tilt Suave (Dividido por 45 para ser clean)
+        document.addEventListener('mousemove', (e) => {
+            if (!card.classList.contains('active')) return;
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 45; 
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Resetar Tilt
+        document.addEventListener('mouseleave', () => {
+            card.style.transition = "transform 0.8s ease";
+            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        });
+        document.addEventListener('mouseenter', () => {
+            card.style.transition = "none";
+        });
+    </script>
+</body>
+</html>
