@@ -187,8 +187,46 @@
             0%, 100% { opacity: 0.3; transform: scale(0.98); }
             50% { opacity: 0.8; transform: scale(1); }
         }
-    </style>
-</head>
+
+/* ... (os seus outros códigos CSS que já lá estavam, como o contador de views, etc) ... */
+
+        /* Botão de Mute */
+        .mute-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        .mute-btn.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .mute-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+        }
+
+    </style>  </head>
 <body>
 
     <audio id="bg-music" loop>
@@ -222,6 +260,10 @@
             <span id="view-number">8271</span>
         </div>
     </div>
+
+    <button id="mute-btn" class="mute-btn">
+        <i class="fa-solid fa-volume-high"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>

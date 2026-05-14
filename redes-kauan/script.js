@@ -4,6 +4,10 @@ const badge = document.getElementById('creator-badge');
 const music = document.getElementById('bg-music');
 const viewDisplay = document.getElementById('view-number');
 
+// Novo botão de Mute
+const muteBtn = document.getElementById('mute-btn');
+const muteIcon = muteBtn.querySelector('i');
+
 // Lógica do Contador
 let views = localStorage.getItem('kaka_views');
 if (!views) {
@@ -14,21 +18,35 @@ if (!views) {
 localStorage.setItem('kaka_views', views);
 viewDisplay.innerText = views.toLocaleString();
 
-// Entrar no site e ativar animações (e a MÚSICA)
+// Entrar no site e ativar animações e música
 overlay.addEventListener('click', () => {
     overlay.style.opacity = '0';
     setTimeout(() => overlay.style.display = 'none', 800);
     
-    // Ativa o card e o selo
+    // Ativa os elementos da tela
     card.classList.add('active');
     badge.classList.add('active');
+    muteBtn.classList.add('active'); // Faz o botão de mute aparecer
     
     // Zera o desfoque do fundo
     document.getElementById('background').style.filter = 'blur(0px) brightness(0.4)';
     
-    // TOCA A MÚSICA
+    // Toca a música
     music.volume = 0.5;
     music.play();
+});
+
+// Lógica de Mutar/Desmutar
+muteBtn.addEventListener('click', () => {
+    if (music.muted) {
+        music.muted = false; // Desmuta
+        muteIcon.classList.remove('fa-volume-xmark');
+        muteIcon.classList.add('fa-volume-high');
+    } else {
+        music.muted = true; // Muta
+        muteIcon.classList.remove('fa-volume-high');
+        muteIcon.classList.add('fa-volume-xmark');
+    }
 });
 
 // Efeito Tilt Suave
