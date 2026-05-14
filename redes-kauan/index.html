@@ -28,14 +28,13 @@
             perspective: 1200px;
         }
 
-        /* Fundo com imagem e desfoque (Blur MUITO reduzido) */
+        /* Fundo com imagem e desfoque inicial leve */
         #background {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            /* SUBSTITUA PELO LINK DA SUA IMAGEM DE GTA */
             background: url('https://i.postimg.cc/8cCvKZR5/9fabc88e-978c-4155-b754-06c334bd315f.webp') center/cover no-repeat;
-            filter: blur(5px) brightness(0.2); /* Desfoque inicial reduzido drasticamente */
+            filter: blur(4px) brightness(0.2); /* Desfoque inicial */
             z-index: -1;
             transition: filter 1.5s ease, transform 1.5s ease;
         }
@@ -60,7 +59,7 @@
             animation: pulse 2s infinite;
         }
 
-        /* Selo "Criado por Kaka" no canto direito (Modificado para sem coração e com efeito de aparecer) */
+        /* Selo "Criado por Kaka" no canto direito */
         .creator-badge {
             position: fixed;
             top: 20px;
@@ -73,20 +72,21 @@
             font-weight: 600;
             display: flex;
             align-items: center;
-            /* Coração removido aqui do CSS, o conteúdo é apenas texto */
             gap: 8px;
             z-index: 1000;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             pointer-events: none;
             
-            /* Efeito de aparecer: começa invisível */
+            /* Inicia invisível e só aparece após o clique (com delay) */
             opacity: 0;
-            transition: opacity 1.5s ease 0.5s; /* Delay para aparecer após a entrada */
+            transform: translateY(-10px);
+            transition: opacity 1s ease 0.5s, transform 1s ease 0.5s; 
         }
 
-        /* Classe para fazer o selo aparecer */
+        /* Classe ativada pelo JS para mostrar o selo */
         .creator-badge.active {
             opacity: 1;
+            transform: translateY(0);
         }
 
         /* Card Principal Estilo Glassmorphism */
@@ -101,7 +101,6 @@
             text-align: center;
             box-shadow: 0 40px 100px rgba(0,0,0,0.9);
             
-            /* Efeito 3D Suave */
             transition: transform 0.2s ease-out, opacity 1s ease;
             transform-style: preserve-3d;
             
@@ -120,7 +119,6 @@
             width: 90px;
             height: 90px;
             border-radius: 50%;
-            /* SUBSTITUA PELO LINK DA SUA FOTO DE PERFIL */
             background: url('https://i.postimg.cc/c1TMRnRH/61722761-38b8-4340-9d48-96bf5dc8367e.webp') center/cover;
             margin: 0 auto 15px;
             border: 2px solid rgba(255,255,255,0.08);
@@ -149,7 +147,6 @@
             font-weight: 500;
             font-size: 0.9rem;
             border: 1px solid rgba(255, 255, 255, 0.02);
-            /* Transição mais suave para hover clean */
             transition: all 0.3s ease-out;
             position: relative;
         }
@@ -159,42 +156,19 @@
             width: 20px;
             text-align: center;
             font-size: 1.1rem;
-            /* Preparar o ícone para transições suave */
             transition: text-shadow 0.3s ease-out;
         }
 
-        /* Efeito de Escala no Botão Inteiro (Hover) - LEVE AUMENTO */
         .link-btn:hover {
             transform: scale(1.03);
-            /* Manter o fundo clean, apenas um leve escurecimento */
             background: rgba(255, 255, 255, 0.05);
         }
 
-        /* Iluminar APENAS o Ícone (Hover) - Usando as Cores da Marca */
-        
-        /* TikTok */
-        .link-btn:hover .fa-tiktok {
-            /* Glow suave combinando ciano e magenta */
-            text-shadow: 0 0 8px rgba(0, 242, 234, 0.8), 0 0 15px rgba(255, 0, 80, 0.6);
-        }
-
-        /* Instagram */
-        .link-btn:hover .fa-instagram {
-            /* Glow suave gradiente rosa/roxo/laranja */
-            text-shadow: 0 0 8px rgba(214, 36, 159, 0.8), 0 0 15px rgba(253, 89, 73, 0.6);
-        }
-
-        /* Twitch */
-        .link-btn:hover .fa-twitch {
-            /* Glow suave roxo Twitch */
-            text-shadow: 0 0 8px rgba(145, 70, 255, 0.8), 0 0 15px rgba(145, 70, 255, 0.6);
-        }
-
-        /* Discord */
-        .link-btn:hover .fa-discord {
-            /* Glow suave azul Discord */
-            text-shadow: 0 0 8px rgba(88, 101, 242, 0.8), 0 0 15px rgba(88, 101, 242, 0.6);
-        }
+        /* Glow dos Ícones */
+        .link-btn:hover .fa-tiktok { text-shadow: 0 0 8px rgba(0, 242, 234, 0.8), 0 0 15px rgba(255, 0, 80, 0.6); }
+        .link-btn:hover .fa-instagram { text-shadow: 0 0 8px rgba(214, 36, 159, 0.8), 0 0 15px rgba(253, 89, 73, 0.6); }
+        .link-btn:hover .fa-twitch { text-shadow: 0 0 8px rgba(145, 70, 255, 0.8), 0 0 15px rgba(145, 70, 255, 0.6); }
+        .link-btn:hover .fa-discord { text-shadow: 0 0 8px rgba(88, 101, 242, 0.8), 0 0 15px rgba(88, 101, 242, 0.6); }
 
         /* Contador de Views */
         .views-counter {
@@ -249,55 +223,6 @@
         </div>
     </div>
 
-    <script>
-        const card = document.getElementById('tilt-card');
-        const overlay = document.getElementById('click-overlay');
-        const badge = document.getElementById('creator-badge'); // Novo elemento
-        const music = document.getElementById('bg-music');
-        const viewDisplay = document.getElementById('view-number');
-
-        // 1. Lógica do Contador (LocalStorage simula visitas)
-        let views = localStorage.getItem('kaka_views');
-        if (!views) {
-            views = 8271;
-        } else {
-            views = parseInt(views) + 1;
-        }
-        localStorage.setItem('kaka_views', views);
-        viewDisplay.innerText = views.toLocaleString();
-
-        // 2. Entrar no site
-        overlay.addEventListener('click', () => {
-            overlay.style.opacity = '0';
-            setTimeout(() => overlay.style.display = 'none', 800);
-            card.classList.add('active');
-            
-            // Ativa o selo apenas após o clique
-            badge.classList.add('active');
-            
-            // Blur MUITO reduzido de 5px para 2px para ficar super nítido após clicar
-            document.getElementById('background').style.filter = 'blur(2px) brightness(0.3)';
-            
-            music.volume = 0.5;
-            music.play();
-        });
-
-        // 3. Efeito Tilt Suave (Dividido por 45 para ser clean)
-        document.addEventListener('mousemove', (e) => {
-            if (!card.classList.contains('active')) return;
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 45; 
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
-
-        // Resetar Tilt
-        document.addEventListener('mouseleave', () => {
-            card.style.transition = "transform 0.8s ease";
-            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-        });
-        document.addEventListener('mouseenter', () => {
-            card.style.transition = "none";
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
