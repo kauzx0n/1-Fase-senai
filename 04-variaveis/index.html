@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="style.css">
     <title>var</title>
 </head>
 <body>
     <h1>variaveis</h1>
-    emeet vs code
- <hr>
-   <button onclick="incrementarContagem()">+</button>
-   <p id="p-contagem">
+
+    <hr>
+    <h2>Vendas na Harry Ploter</h2>
+    <p id="totalVendido">Total de vendas: R$0,00</p>
+    Valor da venda R$
+    <input id="inputVenda" type="text">
+    <button onclick="registrarVenda()">Cadastrar</button>
+    <div id="listaVendas"></div>
+    <hr>
+
+
+
+    emmet vs code
+    <hr>
+    <button onclick="incrementarContagem()">+</button>
+    <button onclick="somar10()">+10</button>
+    <button onclick="somar2()">+2</button>
+    <p id="p-contagem">
         0
-   </p>
- <hr>
-    <button onclick="funcao1()">aa</button>
-    <button onclick="funcao2()">bb</button>
+    </p>
+    <button onclick="decrementarContagem()">-</button>
+    <button onclick="zerarContagem()">0</button>
+    <hr>
     <script src="script.js"></script>
 </body>
 </html>
