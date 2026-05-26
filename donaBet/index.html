@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Dados - Dona Bete</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Rolando ou Enrolando?</h1>
+            <p>Onde a sorte é programada.</p>
+        </header>
+
+        <section class="placar-section">
+            <div class="label">Total Acumulado</div>
+            <div id="total-placar" class="valor-total">0</div>
+            <div id="status-msg" class="mensagem">Selecione um dado para rolar</div>
+        </section>
+
+        <section class="dados-grid">
+            <button class="btn-dado" data-faces="4">D4</button>
+            <button class="btn-dado" data-faces="6">D6</button>
+            <button class="btn-dado" data-faces="8">D8</button>
+            <button class="btn-dado" data-faces="10">D10</button>
+            <button class="btn-dado" data-faces="12">D12</button>
+            <button class="btn-dado" data-faces="20">D20</button>
+        </section>
+
+        <section class="controles">
+            <button id="btn-reset" class="btn-secundario">Zerar Progresso</button>
+        </section>
+
+        <section class="historico-container">
+            <h3>Histórico de Rolagens</h3>
+            <ul id="lista-historico"></ul>
+        </section>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

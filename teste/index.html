@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio dos 9.999 Segundos - Zona de Precisão</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e2f;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+
+        p {
+            color: #aaaaaa;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        #game-area {
+            background-color: #2a2a40;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        #time-display {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #fff;
+            min-height: 70px;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        #message {
+            min-height: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .msg-error { color: #f44336; }
+        .msg-warn { color: #ff9800; }
+        .msg-success { color: #4CAF50; }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            width: 100%;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button.stop-btn {
+            background-color: #f44336;
+        }
+
+        .hint {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 10px;
+            display: block;
+        }
+
+        #leaderboard {
+            background-color: #2a2a40;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #leaderboard h3 {
+            margin-top: 0;
+            color: #ffc107;
+            border-bottom: 2px solid #ffc107;
+            padding-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #1e1e2f;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+        }
+
+        .diff {
+            color: #ff9800;
+            font-size: 0.9rem;
+        }
+
+        .perfect {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .player-name {
+            color: #00bcd4;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* ESTILOS DO MODAL */
+        #victory-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #2a2a40;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #ffc107;
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.4);
+            width: 90%;
+            max-width: 350px;
+        }
+
+        .modal-content h2 {
+            color: #ffc107;
+            margin-top: 0;
+        }
+
+        .modal-content input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 20px 0;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            background-color: #1e1e2f;
+            color: #fff;
+            outline: none;
+            letter-spacing: 5px;
+        }
+
+        .modal-content button {
+            background-color: #ffc107;
+            color: #1e1e2f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Desafio dos 9.999 Segundos</h1>
+    <p>Apaga aos 6s. Pontuação mínima para entrar no Top: <strong>9.600s</strong>.<br>Alcance <strong>9.900s</strong> ou mais para registrar seu nome!</p>
+
+    <div id="game-area">
+        <div id="message"></div>
+        <div id="time-display">0.000s</div>
+        <button id="action-btn">INICIAR</button>
+        <span class="hint">Dica: Use a tecla <strong>Espaço</strong></span>
+    </div>
+
+    <div id="leaderboard">
+        <h3>Top 5 Melhores (Mínimo 9.600s)</h3>
+        <ul id="score-list">
+            </ul>
+    </div>
+
+    <div id="victory-modal">
+        <div class="modal-content">
+            <h2>🏆 VITÓRIA ÉPICA! 🏆</h2>
+            <p>Você parou muito perto dos 9.999s!</p>
+            <p style="font-size: 0.9rem; color: #aaa;">Digite 6 caracteres para salvar:</p>
+            <input type="text" id="name-input" maxlength="6" autocomplete="off" placeholder="XXXXXX">
+            <button id="save-name-btn">SALVAR</button>
+        </div>
+    </div>
+
+    <script>
+        let startTime = 0;
+        let isRunning = false;
+        let animationId = null;
+        let isModalOpen = false;
+        
+        // Novo save para aplicar o filtro de 9.600s
+        let scores = JSON.parse(localStorage.getItem('noveNoveNoveFiltroScores')) || [];
+
+        const display = document.getElementById('time-display');
+        const btn = document.getElementById('action-btn');
+        const list = document.getElementById('score-list');
+        const message = document.getElementById('message');
+        
+        const modal = document.getElementById('victory-modal');
+        const nameInput = document.getElementById('name-input');
+        const saveNameBtn = document.getElementById('save-name-btn');
+
+        const TARGET_TIME = 9.999;
+        const MIN_SCORE_TIME = 9.600;
+        
+        let currentElapsed = 0;
+        let currentDiff = 0;
+
+        function updateLeaderboard() {
+            scores.sort((a, b) => a.diff - b.diff);
+            scores = scores.slice(0, 5);
+            localStorage.setItem('noveNoveNoveFiltroScores', JSON.stringify(scores));
+
+            list.innerHTML = '';
+            
+            if (scores.length === 0) {
+                list.innerHTML = '<li>Ainda não há tentativas válidas (mínimo 9.600s).</li>';
+                return;
+            }
+
+            scores.forEach((score, index) => {
+                let li = document.createElement('li');
+                let timeStr = `${score.time.toFixed(3)}s`;
+                let diffStr = `(Faltou: ${score.diff.toFixed(3)}s)`;
+                
+                if (score.diff === 0) {
+                    diffStr = '<span class="perfect">PERFEITO!</span>';
+                }
+
+                let playerName = score.name ? `<span class="player-name">${score.name}</span>` : '---';
+
+                li.innerHTML = `<span><strong>#${index + 1}</strong> - [${playerName}] - ${timeStr}</span> <span class="diff">${diffStr}</span>`;
+                list.appendChild(li);
+            });
+        }
+
+        updateLeaderboard();
+
+        function updateTimer() {
+            if (!isRunning) return;
+
+            let currentTime = performance.now();
+            let elapsed = (currentTime - startTime) / 1000;
+            
+            display.innerText = `${elapsed.toFixed(3)}s`;
+
+            if (elapsed >= 6 && elapsed <= 8) {
+                let opacity = 1 - ((elapsed - 6) / 2);
+                display.style.opacity = opacity;
+            } else if (elapsed > 8) {
+                display.style.opacity = 0; 
+            } else {
+                display.style.opacity = 1; 
+            }
+
+            animationId = requestAnimationFrame(updateTimer);
+        }
+
+        function saveScore(playerName) {
+            scores.push({ name: playerName, time: currentElapsed, diff: currentDiff });
+            updateLeaderboard();
+        }
+
+        function toggleTimer() {
+            if (!isRunning) {
+                // Iniciar
+                startTime = performance.now();
+                isRunning = true;
+                
+                btn.innerText = "PARAR!";
+                btn.classList.add('stop-btn');
+                display.style.color = "#fff"; 
+                display.style.opacity = 1; 
+                message.innerText = ""; 
+                message.className = "";
+                
+                animationId = requestAnimationFrame(updateTimer);
+            } else {
+                // Parar
+                let endTime = performance.now();
+                isRunning = false;
+                cancelAnimationFrame(animationId);
+                
+                btn.innerText = "TENTAR NOVAMENTE";
+                btn.classList.remove('stop-btn');
+
+                currentElapsed = (endTime - startTime) / 1000;
+                currentDiff = TARGET_TIME - currentElapsed;
+                
+                display.style.opacity = 1; 
+                display.innerText = `${currentElapsed.toFixed(3)}s`;
+                
+                // Validações de limites de tempo
+                if (currentElapsed > TARGET_TIME) {
+                    // Passou do limite máximo
+                    display.style.color = "#f44336"; 
+                    message.innerText = "Passou de 9.999 segundos! Anulado.";
+                    message.className = "msg-error";
+                } else if (currentElapsed < MIN_SCORE_TIME) {
+                    // Ficou abaixo do mínimo exigido
+                    display.style.color = "#ff9800";
+                    message.innerText = "Muito cedo! Só pontua a partir de 9.600s.";
+                    message.className = "msg-warn";
+                } else {
+                    // Dentro da zona válida (9.600 até 9.999)
+                    if (currentElapsed >= 9.900) {
+                        // Vitória Épica (pede nome)
+                        display.style.color = "#4CAF50";
+                        message.innerText = "Tempo fantástico!";
+                        message.className = "msg-success";
+                        isModalOpen = true; 
+                        nameInput.value = ""; 
+                        modal.style.display = "flex"; 
+                        setTimeout(() => nameInput.focus(), 100); 
+                    } else {
+                        // Pontuação normal (sem nome)
+                        display.style.color = "#fff";
+                        message.innerText = "Boa! Entrou no placar.";
+                        message.className = "msg-success";
+                        saveScore(null);
+                    }
+                }
+            }
+        }
+
+        // Lógica do Modal de Nome
+        saveNameBtn.addEventListener('click', () => {
+            let typedName = nameInput.value.trim().toUpperCase();
+            if (typedName.length === 6) {
+                saveScore(typedName);
+                modal.style.display = "none"; 
+                isModalOpen = false; 
+            } else {
+                alert("O nome deve ter EXATAMENTE 6 caracteres!");
+                nameInput.focus();
+            }
+        });
+
+        // Eventos
+        btn.addEventListener('click', () => {
+            if (!isModalOpen) toggleTimer();
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'Space' && !isModalOpen) {
+                event.preventDefault(); 
+                if (document.activeElement === btn) {
+                    btn.blur(); 
+                }
+                toggleTimer();
+            }
+        });
+    </script>
+
+</body>
+</html>

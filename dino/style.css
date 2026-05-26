@@ -1,0 +1,61 @@
+/* Visual Básico e Direto */
+body {
+    background-color: #022c1e; /* Fundo verde escuro */
+    color: #4ade80; /* Textos em verde claro */
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.caixa-principal {
+    border: 2px solid #045233; /* Borda da caixa */
+    padding: 20px;
+    width: 450px;
+    border-radius: 8px;
+}
+
+h1 {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+input {
+    background-color: #cccccc;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Organizando os botões em 3 colunas */
+.area-botoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #374151; /* Fundo cinza */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #4b5563; /* Cinza mais claro ao passar o mouse */
+}
+
+.resultado {
+    color: white;
+    font-size: 16px;
+}
+
+.titulo-resultado {
+    color: #4ade80;
+    text-align: center;
+    font-weight: bold;
+}

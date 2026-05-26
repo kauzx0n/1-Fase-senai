@@ -1,4 +1,9 @@
 
+let totalRolado = 0 
+
+function rolarDado(numero){
+
+}
 
 let total = 0
 function registrarVenda(){
@@ -19,7 +24,6 @@ function registrarVenda(){
     console.log(valor)
 }
 
-
 let cont = 0
 function incrementarContagem(){
     // cont = cont + 1
@@ -32,25 +36,22 @@ function decrementarContagem(){
     cont--
     document.getElementById('p-contagem').innerHTML = cont
 }
+
 function somar10(){
     cont = cont + 10
     // cont += 10
     document.getElementById('p-contagem').innerHTML = cont
 }
+
 function somar2(){
     cont += 2
     document.getElementById('p-contagem').innerHTML = cont
 }
+
 function zerarContagem(){
     cont = 0
     document.getElementById('p-contagem').innerHTML = cont
 }
-
-
-
-
-
-
 
 let global = 'Eu sou uma variável global :/'
 function funcao1(){
@@ -59,6 +60,7 @@ function funcao1(){
     console.log(local);
     console.log(global);
 }
+
 function funcao2(){
     // let local
     console.log(global);

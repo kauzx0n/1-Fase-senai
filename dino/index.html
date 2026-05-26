@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo do Dino</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="caixa-principal">
+        <h1>Jogo do Dino! 🦕🦖</h1>
+
+        <label>Valor da aposta: R$ </label>
+        <input type="number" id="valorAposta">
+
+        <div class="area-botoes">
+            <button onclick="jogar('Espinossauro')">Espinossauro</button>
+            <button onclick="jogar('T-Rex')">T-Rex</button>
+            <button onclick="jogar('Braquiossauro')">Braquiossauro</button>
+            <button onclick="jogar('Velocirraptor')">Velocirraptor</button>
+            <button onclick="jogar('Estegossauro')">Estegossauro</button>
+            <button onclick="jogar('Triceratopo')">Triceratopo</button>
+            <button onclick="jogar('Anquilossauro')">Anquilossauro</button>
+            <button onclick="jogar('Parassaurolofo')">Parassaurolofo</button>
+            <button onclick="jogar('Alossauro')">Alossauro</button>
+            <button onclick="jogar('Carnotauro')">Carnotauro</button>
+        </div>
+
+        <div class="titulo-resultado">!! RESULTADO !!</div>
+        
+        <div class="resultado">
+            <p>Seu dino: <span id="textoSeuDino">-</span></p>
+            <p>Dino sorteado: <span id="textoDinoSorteado">-</span></p>
+            <p id="mensagemFinal"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
