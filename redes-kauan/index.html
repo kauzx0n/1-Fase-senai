@@ -189,8 +189,6 @@
             50% { opacity: 0.8; transform: scale(1); }
         }
 
-/* ... (os seus outros códigos CSS que já lá estavam, como o contador de views, etc) ... */
-
         /* Botão de Mute */
         .mute-btn {
             position: fixed;
@@ -227,17 +225,18 @@
             transform: scale(1.1);
         }
 
-/* Ajustes para Celular (Mobile) */
+        /* Ajustes para Celular (Mobile) */
         @media (max-width: 768px) {
             .mute-btn {
-                bottom: 40px; /* Sobe o botão para não esconder atrás da barra do navegador */
+                bottom: 40px; 
                 left: 20px;
-                width: 50px;  /* Deixa um pouquinho maior para o dedo acertar mais fácil */
+                width: 50px;  
                 height: 50px;
             }
         }
 
-    </style>  </head>
+    </style>  
+</head>
 <body>
 
     <audio id="bg-music" loop>
@@ -276,6 +275,80 @@
         <i class="fa-solid fa-volume-high"></i>
     </button>
 
-    <script src="script.js"></script>
+    <script>
+        const card = document.getElementById('tilt-card');
+        const overlay = document.getElementById('click-overlay');
+        const music = document.getElementById('bg-music');
+        const viewDisplay = document.getElementById('view-number');
+        const badge = document.getElementById('creator-badge');
+        const muteBtn = document.getElementById('mute-btn');
+        const muteIcon = muteBtn.querySelector('i');
+
+        // ====== CONTADOR GLOBAL GRATUITO ======
+        const baseViews = 8271; 
+        
+        async function updateCounter() {
+            try {
+                // Link oficial que soma +1 para todo mundo
+                const response = await fetch('https://api.counterapi.dev/v1/kakaatv_bio/visitas/up');
+                const data = await response.json();
+                
+                // Soma a base com as visitas da nuvem
+                const totalViews = baseViews + data.count;
+                viewDisplay.innerText = totalViews.toLocaleString('pt-BR');
+            } catch (error) {
+                console.error("Erro no contador:", error);
+                viewDisplay.innerText = baseViews.toLocaleString('pt-BR');
+            }
+        }
+
+        // Executa a contagem assim que o site carrega
+        updateCounter();
+
+        // ====== LÓGICA DE ENTRADA ======
+        overlay.addEventListener('click', () => {
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.style.display = 'none', 800);
+            
+            // Ativa todos os elementos do site
+            card.classList.add('active');
+            badge.classList.add('active');
+            muteBtn.classList.add('active');
+            
+            // Inicia o áudio
+            music.volume = 0.5;
+            music.play().catch(() => console.log("Áudio aguardando clique ativo"));
+        });
+
+        // ====== BOTÃO DE MUTE/DESMUTE ======
+        muteBtn.addEventListener('click', () => {
+            if (music.muted) {
+                music.muted = false;
+                muteIcon.classList.remove('fa-volume-xmark');
+                muteIcon.classList.add('fa-volume-high');
+            } else {
+                music.muted = true;
+                muteIcon.classList.remove('fa-volume-high');
+                muteIcon.classList.add('fa-volume-xmark');
+            }
+        });
+
+        // ====== EFEITO TILT 3D ======
+        document.addEventListener('mousemove', (e) => {
+            if (!card.classList.contains('active')) return;
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 45; 
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            card.style.transition = "transform 0.8s ease";
+            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            card.style.transition = "none";
+        });
+    </script>
 </body>
 </html>
