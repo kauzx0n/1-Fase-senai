@@ -284,18 +284,26 @@
         const muteBtn = document.getElementById('mute-btn');
         const muteIcon = muteBtn.querySelector('i');
 
-        // ====== CONTADOR GLOBAL GRATUITO ======
+        // ====== CONTADOR UPSTASH/VERCEL KV (SEM LIMITES) ======
         const baseViews = 8271; 
+        const KV_URL = "https://loved-marlin-138226.upstash.io";
+        const KV_TOKEN = "gQAAAAAAAhvyaAAIgcDJiM2E0OTZjNTg5ZDQ0MGViOWUxYzI3ZTRjYmZhMWJlMg";
         
         async function updateCounter() {
             try {
-                // Link oficial que soma +1 para todo mundo
-                const response = await fetch('https://api.counterapi.dev/v1/kakaatv_bio/visitas/up');
+                // Soma +1 de forma global na sua base de dados
+                const response = await fetch(`${KV_URL}/incr/visitas_kaka`, {
+                    headers: {
+                        Authorization: `Bearer ${KV_TOKEN}`
+                    }
+                });
                 const data = await response.json();
                 
-                // Soma a base com as visitas da nuvem
-                const totalViews = baseViews + data.count;
-                viewDisplay.innerText = totalViews.toLocaleString('pt-BR');
+                // Soma as visualizações da nuvem com a sua base fixa
+                if (data.result) {
+                    const totalViews = baseViews + parseInt(data.result);
+                    viewDisplay.innerText = totalViews.toLocaleString('pt-BR');
+                }
             } catch (error) {
                 console.error("Erro no contador:", error);
                 viewDisplay.innerText = baseViews.toLocaleString('pt-BR');
