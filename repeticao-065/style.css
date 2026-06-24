@@ -1,0 +1,51 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+/* Estilos do Menu Lateral */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  height: 100vh; /* Faz o menu ocupar a altura toda da tela */
+  float: left;   /* Joga o menu para a esquerda */
+}
+
+li a {
+  display: block;
+  color: black;
+  padding: 15px 16px;
+  text-decoration: none;
+  cursor: pointer; /* Muda o mouse para a mãozinha */
+}
+
+li a.active {
+  background-color: #568bff;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555555;
+  color: white;
+}
+
+/* Área onde os botões vão aparecer */
+.conteudo {
+  margin-left: 220px; /* Empurra o conteúdo para não ficar debaixo do menu */
+  padding: 20px;
+}
+
+/* Classe que o JavaScript vai usar para esconder as partes */
+.escondido {
+  display: none;
+}
+
+/* Um espacinho entre os botões para não ficarem colados */
+button {
+  margin: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
