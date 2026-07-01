@@ -206,6 +206,6 @@ function primosAte50() {
 
 //🐱‍🏍Aclamação repetida Peça ao usuário para digitar uma palavra e repita essa palavra 10 vezes na tela.
 
-function  
+
 
 }
