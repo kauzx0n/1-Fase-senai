@@ -1,0 +1,43 @@
+/* 1. O CORPO DA PÁGINA (Configurações gerais) */
+body {
+    font-family: sans-serif; /* Usa a fonte padrão e limpa do aparelho da pessoa */
+    background-color: #f4f7f6; /* Fundo cinza bem clarinho */
+    color: #333; /* Texto em cinza escuro (melhor para leitura que o preto puro) */
+    text-align: center; /* Centraliza tudo na tela */
+    padding: 20px; /* Dá um "respiro" para os elementos não grudarem nas bordas da tela */
+}
+
+/* 2. O TÍTULO PRINCIPAL */
+h1 {
+    color: #2c3e50; /* Um tom de azul bem escuro */
+}
+
+/* 3. A CAIXA (Container) ONDE FICAM OS BOTÕES */
+div {
+    background-color: white; /* Fundo branco para destacar do fundo cinza da página */
+    padding: 20px; /* Espaço interno para os botões não baterem nas bordas da caixa */
+    margin-bottom: 20px; /* Empurra o que estiver embaixo para longe */
+}
+
+/* 4. O VISUAL DOS BOTÕES */
+button {
+    background-color: #c73a3a; /* Azul claro */
+    color: white; /* Letra branca */
+    border: none; /* Remove a borda padrão e feia dos navegadores */
+    padding: 10px 20px; /* Deixa o botão mais gordinho (10px em cima/baixo, 20px nos lados) */
+    margin: 5px; /* Desgruda um botão do outro */
+    cursor: pointer; /* Faz o mouse virar uma "mãozinha" quando passa por cima */
+}
+
+/* 5. EFEITO AO PASSAR O MOUSE NO BOTÃO */
+button:hover {
+    background-color: #9e2525; /* Muda para um azul um pouco mais escuro */
+}
+
+/* 6. A CAIXA DE RESULTADO DO JAVASCRIPT */
+#resultado {
+    background-color: #707070; /* Fundo escuro */
+    color: #0cc95b; /* Letra verde para dar destaque */
+    padding: 20px; /* Espaço interno para o texto não ficar espremido */
+    font-size: 20px; /* Aumenta o tamanho da letra do resultado */
+}

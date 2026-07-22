@@ -24,6 +24,7 @@ let idades = [22, 33, 32]
 let produtos = ["Meia", "Pá de corte", "Suco de manga", "Leite"]
 let precos = [665.9999, 777, 12, 4]
 
+
 function adicionarProduto(){
     let preco, produto
 
@@ -75,5 +76,18 @@ function verProdutos(){
         document.getElementById('listaProdutos').innerHTML += 
         "<p>" + j + "°: " + produtos[i] + "</p>"
     } 
+}
+
+
+
+
+//Crie um array com os dias da semana.
+let diaSemana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 
+    'Sábado', 'Domingo', 'Feriado'];
+
+
+function diasDaSemana(){
+    
+console.log(diaSemana)
 }
 

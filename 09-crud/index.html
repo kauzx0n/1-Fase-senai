@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CRUD</title>
+</head>
+<body>
+    <h1>CRUD</h1>
+
+    <div id="form">
+        <div class="container-inputs">
+            <label for="input-nome">Nome</label>
+            <input id="input-nome" type="text">
+        </div>
+        <div class="container-inputs">
+            <label for="">Altura</label>
+            <input id="input-altura" type="number">
+        </div>
+        <div class="container-inputs">
+            <label for="">Cor</label>
+            <input id="input-cor" type="text">
+        </div>
+        <div class="container-inputs">
+            <label for="">Custo</label>
+            <input id="input-custo" type="number">
+        </div>
+        <div class="container-inputs">
+            <label for="">ID</label>
+            <input id="input-id" type="number">
+        </div>
+
+        <button onclick="cadastrarDino()">+</button>
+        <button onclick="salvarDino()">💾</button>
+        <button onclick="excluirDino()">🗑️</button>
+
+    </div>
+
+  
+    <div id="painel-botoes">
+        <button onclick="mostrarTodos()">Mostrar todos dinos</button>
+        <button onclick="testar()">Teste</button>
+        <button onclick="pesquisar()">🔍</button>
+
+    </div>
+ 
+
+    <div id="painel-dinos">
+        tem nada dentro
+    </div>
+
+
+    
+    <script src="script.js"></script>
+</body>
+</html>

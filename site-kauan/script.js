@@ -295,8 +295,8 @@ function buscarCEP() {
             mensagem += `*TOTAL A PAGAR:* ${formatarMoeda(totalFinal)}\n\n`;
             mensagem += `Olá! Gostaria de finalizar este pedido. Aguardo o link de pagamento ou chave PIX!`;
 
-            // 4. Cria o link com o seu número (55 + DDD + Número)
-            const numeroZap = "5548999591214";
+            // 4. Cria o link com o seu número (55 + DDD + Número)z'
+            const numeroZap = "5548992225362";
             
             // Converte o texto para formato de link
             const urlZap = `https://wa.me/${numeroZap}?text=${encodeURIComponent(mensagem)}`;

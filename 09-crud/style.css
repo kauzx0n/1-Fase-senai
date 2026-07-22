@@ -1,0 +1,67 @@
+:root {
+  /* --- Cores Principais (Tons de Dinossauro) --- */
+  --color-primary: #4a7c59;       /* Verde Dinossauro (Principal para botões, destaques e headers) */
+  --color-primary-light: #689f78; /* Verde Folha Suave (Hover ou elementos secundários) */
+  --color-secondary: #e9967a;     /* Terracota/Laranja Suave (Para miniaturas de argila/fósseis) */
+
+  /* --- Tons Neutros (Fundo e Textos) --- */
+  --color-bg-main: #f9f8f3;       /* Creme Claro (Fundo principal aconchegante, foge do branco puro) */
+  --color-bg-card: #ffffff;       /* Branco Puro (Para dar contraste nos cards de produtos) */
+  --color-text-main: #2b3a30;     /* Verde Musgo Escuro (Texto principal, muito mais suave que o preto) */
+  --color-text-muted: #707b73;    /* Cinza Esverdeado (Para textos secundários, prazos ou descrições curtas) */
+
+  /* --- Cores de Destaque e Alertas (Miniaturas Raras/Avisos) --- */
+  --color-accent: #f4a261;        /* Amarelo Mostarda/Ouro (Ótimo para estrelas de avaliação ou selo "Raro") */
+  --color-danger: #e76f51;        /* Vermelho Terra (Para promoções ou botão de remover do carrinho) */
+  
+  /* --- Bordas e Sombras --- */
+  --color-border: #e2e8f0;        /* Linhas divisórias sutis */
+  --shadow-sm: 0 2px 4px rgba(43, 58, 48, 0.08);
+  --shadow-md: 0 4px 12px rgba(43, 58, 48, 0.12);
+}
+
+body{
+    background-color: var(--color-bg-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-dino{
+    background-color: var(--color-bg-card);
+    /* margin: 5px; */
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+}
+
+#painel-dinos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+#form{
+    background-color: var(--color-primary-light);
+    width: 40%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+    padding: 25px;
+    border-radius: 10px;
+}
+.container-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
